@@ -1,0 +1,19 @@
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height:100vh;
+}
+#logout_button{
+  position: fixed;
+  top:10px;
+  left:10px;
+}
+#home_button{
+  position: fixed;
+  top:10px;
+  left:100px;
+}
+img{
+  width: 100px;
+}
