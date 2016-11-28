@@ -20,7 +20,8 @@ import UserAdminSpecific from './UserAdminSpecific';
 
 
 import {Router, Route, browserHistory, IndexRoute} from 'react-router'
-global.server = 'http://localhost:3000';
+// global.server = 'http://localhost:3000';
+global.server ='http://130.211.203.92';
 
 ReactDOM.render(
     user(),
