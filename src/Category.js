@@ -24,6 +24,7 @@ class Category extends Component {
     }
 
     new(type){
+
         if(type=="submit"){
             fetch(global.server + '/question/' + localStorage.getItem("uid")+"-"+this.props.params.cid, {
                 method: "POST",
@@ -50,7 +51,7 @@ class Category extends Component {
                 <h1>{this.props.params.name} 질문목록 <button onClick={this.new}>질문 올리기</button></h1>
                 {this.state.newQuestion?(
                     <div>
-                        <input type="text" value={this.state.editData.title} onChange={e=> {
+                        <input type="text" onChange={e=> {
                             this.setState({
                                 new: Object.assign({}, this.state.new, {
                                     title: e.target.value
@@ -58,7 +59,7 @@ class Category extends Component {
                             })
                         }}/>
                         <br/>
-                        <textarea value={this.state.editData.content} onChange={e=> {
+                        <textarea onChange={e=> {
                             this.setState({
                                 new: Object.assign({}, this.state.new, {
                                     content: e.target.value
