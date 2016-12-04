@@ -8,7 +8,8 @@ class Main extends Component {
             registerInfo: {},
             categoryList:[],
             groupList:[],
-            allocatedList:[]
+            allocatedList:[],
+            groupList2:[]
         }
         this.editBasic = this.editBasic.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
@@ -28,6 +29,11 @@ class Main extends Component {
         fetch(global.server + '/assign/'+localStorage.getItem("uid")).then(dat=>dat.json()).then(data=>{
             this.setState({
                 allocatedList: data
+            })
+        })
+        fetch(global.server + '/group/belong/'+localStorage.getItem("uid")).then(dat=>dat.json()).then(data=>{
+            this.setState({
+                groupList2: data
             })
         })
     }
@@ -146,6 +152,14 @@ class Main extends Component {
                     <ul>
                         {this.state.groupList.map((item, index)=> {
                             return (<li key={index}><Link to={"/group/"+item.id+"!!!"+item.name+"!!!"+item.cid}>{item.name}</Link></li>)
+                        })}
+                    </ul>
+                </div>
+                <div>
+                    <h1>내가 소속된 멘토그룹과 공지사항</h1>
+                    <ul>
+                        {this.state.groupList2.map((item, index)=> {
+                            return (<li key={index}>{item.name} [{item.content}] </li>)
                         })}
                     </ul>
                 </div>

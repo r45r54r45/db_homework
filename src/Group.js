@@ -12,12 +12,15 @@ class Category extends Component {
             questionList:[],
             question5:[],
             response5:[],
-            question100:[]
+            question100:[],
+            noticeOpen: false,
+            notice: ''
         }
         this.addMentor = this.addMentor.bind(this);
         this.allocate = this.allocate.bind(this);
         this.allocateQuestion=this.allocateQuestion.bind(this);
         this.delete=this.delete.bind(this);
+        this.submitNotice=this.submitNotice.bind(this);
     }
 
     componentWillMount() {
@@ -97,6 +100,21 @@ class Category extends Component {
             location.reload();
         })
     }
+    submitNotice(){
+        fetch(global.server + '/notice',{
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                content: this.state.notice,
+                Mentor_group_id: this.props.params.gid
+            })
+        }).then(dat=>dat.json()).then(Data=> {
+            alert('전송 완료');
+            location.reload();
+        })
+    }
     render() {
         return (
             <div>
@@ -108,6 +126,12 @@ class Category extends Component {
                         })
                     }}>멘토들 추가
                     </button>
+                    <button onClick={e=> {
+                        this.setState({
+                            noticeOpen: true
+                        })
+                    }}>공지 쓰기
+                    </button>
                 </h2>
                 {this.state.mentorAddOpen ? (
                     <div>
@@ -117,6 +141,15 @@ class Category extends Component {
                                 return <li key={index} onClick={e=>this.addMentor(item.id)}>{item.name}</li>
                             })}
                         </ul>
+                    </div>
+                ) : ""}
+                {this.state.noticeOpen ? (
+                    <div>
+                        <h3>공지 쓰기</h3>
+                        <input type="text" onChange={e=>this.setState({
+                            notice: e.target.value
+                        })}/>
+                        <button onClick={this.submitNotice}>업로드</button>
                     </div>
                 ) : ""}
                 <h2>소속 멘토 리스트</h2>

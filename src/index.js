@@ -20,7 +20,7 @@ import UserAdminSpecific from './UserAdminSpecific';
 import MentorSpecific from './MentorSpecific'
 import Group from './Group'
 import {Router, Route, browserHistory, IndexRoute} from 'react-router'
-// global.server = 'http://localhost:3001';
+// global.server = 'http://localhost:3003';
 global.server ='http://130.211.203.92:1234';
 
 ReactDOM.render(
