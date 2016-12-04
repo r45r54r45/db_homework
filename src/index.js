@@ -44,6 +44,12 @@ function user() {
                         <Route path=":qid/:cid" component={Question}/>
                     </Route>
                     <Route path="category" component={CategoryAdmin}/>
+                    <Route path="assess_5">
+                        <Route path=":type/:id" component={Assess_5}/>
+                    </Route>
+                    <Route path="assess_100">
+                        <Route path=":qid" component={Assess_10}/>
+                    </Route>
                     <Route path="mentor">
                         <IndexRoute component={MentorAdmin}/>
                         <Route path=":gid/:gname/:cid" component={MentorSpecific}/>
