@@ -90,7 +90,7 @@ class Category extends Component {
     }
 
     newResponse() {
-        fetch(global.server + '/response/' + localStorage.getItem("uid")||"11" + "-" + this.props.params.qid, {
+        fetch(global.server + '/response/' + localStorage.getItem("uid")==null?"11":localStorage.getItem("uid") + "-" + this.props.params.qid, {
             method: 'POST',
             body: formDataSerialize(this.state.newResponse)
         }).then(dat=>dat.json()).then(data=> {
