@@ -12,7 +12,7 @@ class Category extends Component {
 
     }
     submit(){
-        fetch(global.server+'/assess_100/question/'+localStorage.getItem("uid")||'11'+"-"+this.props.params.qid,{
+        fetch(global.server+'/assess_100/question/'+localStorage.getItem("uid")==null?'11':localStorage.getItem("uid")+"-"+this.props.params.qid,{
             method: 'POST',
             headers:{
                 "Content-Type": 'application/json'
