@@ -6,7 +6,9 @@ class Main extends Component {
         this.state = {
             editBasic: false,
             registerInfo: {},
-            categoryList:[]
+            categoryList:[],
+            groupList:[],
+            allocatedList:[]
         }
         this.editBasic = this.editBasic.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
@@ -16,6 +18,16 @@ class Main extends Component {
         fetch(global.server + '/question/category').then(dat=>dat.json()).then(data=>{
             this.setState({
                 categoryList: data
+            })
+        })
+        fetch(global.server + '/group/'+localStorage.getItem("uid")).then(dat=>dat.json()).then(data=>{
+            this.setState({
+                groupList: data
+            })
+        })
+        fetch(global.server + '/assign/'+localStorage.getItem("uid")).then(dat=>dat.json()).then(data=>{
+            this.setState({
+                allocatedList: data
             })
         })
     }
@@ -126,6 +138,22 @@ class Main extends Component {
                         <li><Link to="/total">전체 질문</Link></li>
                         {this.state.categoryList.map((item, index)=> {
                             return (<li key={index}><Link to={"/category/"+item.id+"!!!"+item.name}>{item.name}</Link></li>)
+                        })}
+                    </ul>
+                </div>
+                <div>
+                    <h1>내가 슈퍼멘토로 있는 멘토그룹 관리</h1>
+                    <ul>
+                        {this.state.groupList.map((item, index)=> {
+                            return (<li key={index}><Link to={"/group/"+item.id+"!!!"+item.name+"!!!"+item.cid}>{item.name}</Link></li>)
+                        })}
+                    </ul>
+                </div>
+                <div>
+                    <h1>나에게 할당된 질문들</h1>
+                    <ul>
+                        {this.state.allocatedList.map((item, index)=> {
+                            return (<li key={index}><Link to={"/question/"+item.Question_id+"/"+item.Category_id}>{item.title}</Link></li>)
                         })}
                     </ul>
                 </div>

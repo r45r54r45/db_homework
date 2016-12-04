@@ -18,7 +18,7 @@ import MentorAdmin from './MentorAdmin'
 import AssessAdmin from './AssessAdmin'
 import UserAdminSpecific from './UserAdminSpecific';
 import MentorSpecific from './MentorSpecific'
-
+import Group from './Group'
 import {Router, Route, browserHistory, IndexRoute} from 'react-router'
 // global.server = 'http://localhost:3001';
 global.server ='http://130.211.203.92:1234';
@@ -69,6 +69,9 @@ function user() {
                     </Route>
                     <Route path="assess_100">
                         <Route path=":qid" component={Assess_10}/>
+                    </Route>
+                    <Route path="group">
+                        <Route path=":gid!!!:name!!!:cid" component={Group}/>
                     </Route>
                     <Route path="total" component={Total}/>
 

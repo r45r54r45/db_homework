@@ -58,7 +58,6 @@ class Category extends Component {
                             <h3>질문 제목: {item.title}</h3>
                             <p>질문1: {item.aq1}</p>
                             <p>질문2: {item.aq2}</p>
-                            <p>질문3: {item.aq3}</p>
                         </div>
                     )
                 })}
