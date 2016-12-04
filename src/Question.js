@@ -93,7 +93,7 @@ class Category extends Component {
     }
 
     newResponse() {
-        let url=global.server + "/response/" + localStorage.getItem("uid")==null?"11":localStorage.getItem("uid") + "-" + this.props.params.qid;
+        let url=global.server + "/response/" + (localStorage.getItem("uid")==null?"11":localStorage.getItem("uid")) + "-" + this.props.params.qid;
         console.log(url);
         fetch(url, {
             method: 'POST',
