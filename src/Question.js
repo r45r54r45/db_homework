@@ -31,20 +31,23 @@ class Category extends Component {
                     }
                 })
             });
-        fetch(global.server + '/user/isMentor/' + localStorage.getItem("uid") + "-" + this.props.params.cid)
-            .then(dat=>dat.json())
-            .then(data=> {
-                if (data.type == 0) {
-                    //일반
-                    this.setState({
-                        userType: "normal"
-                    })
-                } else {
-                    this.setState({
-                        userType: "mentor"
-                    })
-                }
-            })
+        if(localStorage.getItem("admin")==null){
+            fetch(global.server + '/user/isMentor/' + localStorage.getItem("uid") + "-" + this.props.params.cid)
+                .then(dat=>dat.json())
+                .then(data=> {
+                    if (data.type == 0) {
+                        //일반
+                        this.setState({
+                            userType: "normal"
+                        })
+                    } else {
+                        this.setState({
+                            userType: "mentor"
+                        })
+                    }
+                })
+        }
+
         fetch(global.server + '/response/' + qid)
             .then(dat=>dat.json())
             .then(data=> {
