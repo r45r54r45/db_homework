@@ -17,7 +17,7 @@ class Assess_5 extends Component {
         }
     }
     submit(){
-        fetch(global.server+'/assess_5/'+this.type+"/"+localStorage.getItem("uid")+"-"+this.props.params.id,{
+        fetch(global.server+'/assess_5/'+this.type+"/"+localStorage.getItem("uid")||'11'+"-"+this.props.params.id,{
             method: 'POST',
             headers:{
                 "Content-Type": 'application/json'

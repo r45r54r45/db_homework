@@ -107,9 +107,9 @@ class Category extends Component {
                 <p>{this.state.questionInfo.content}</p>
                 <img src={global.server + '/static/images/' + this.state.questionInfo.image}/>
                 <br/>
-                {new Date(this.state.questionInfo.assess_end) > new Date() && this.state.userType == "normal" ? (
+                {(new Date(this.state.questionInfo.assess_end) > new Date() && this.state.userType == "normal")||(localStorage.getItem("admin")&&new Date(this.state.questionInfo.assess_end) > new Date()) ? (
                     <Link to={"/assess_5/q/" + this.state.questionInfo.id}>5점제 점수 매기기</Link>) : ""}
-                {new Date(this.state.questionInfo.assess_end) > new Date() && this.state.userType == "mentor" ? (
+                {(new Date(this.state.questionInfo.assess_end) > new Date() && this.state.userType == "mentor")||(localStorage.getItem("admin")&&new Date(this.state.questionInfo.assess_end) > new Date()) ? (
                     <Link to={"/assess_100/" + this.state.questionInfo.id}>100점제 점수 매기기</Link>) : ""}
                 {new Date(this.state.questionInfo.assess_end) > new Date() && this.state.questionInfo.User_id == localStorage.getItem("uid") ? (
                     <div>
@@ -163,28 +163,31 @@ class Category extends Component {
                             )
                         })}
                     </ol>
-                    <div>
-                        <h5>새 답변</h5>
-                        <textarea onChange={e=> {
-                            this.setState({
-                                newResponse: Object.assign({}, this.state.newResponse, {
-                                    content: e.target.value
+                    {(this.state.userType == "normal"?(
+                        <div>
+                            <h5>새 답변</h5>
+                            <textarea onChange={e=> {
+                                this.setState({
+                                    newResponse: Object.assign({}, this.state.newResponse, {
+                                        content: e.target.value
+                                    })
                                 })
-                            })
-                        }}>
+                            }}>
 
                         </textarea>
-                        <br/>
-                        <input type="file" name="image" onChange={e=> {
-                            this.setState({
-                                newResponse: Object.assign({}, this.state.newResponse, {
-                                    image: e.target.files[0]
+                            <br/>
+                            <input type="file" name="image" onChange={e=> {
+                                this.setState({
+                                    newResponse: Object.assign({}, this.state.newResponse, {
+                                        image: e.target.files[0]
+                                    })
                                 })
-                            })
-                        }}/>
-                        <br/>
-                        <button onClick={this.newResponse}>전송</button>
-                    </div>
+                            }}/>
+                            <br/>
+                            <button onClick={this.newResponse}>전송</button>
+                        </div>
+                    ):"")}
+
                 </div>
             </div>
         );
