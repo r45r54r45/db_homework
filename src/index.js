@@ -17,10 +17,10 @@ import CategoryAdmin from './CategoryAdmin'
 import MentorAdmin from './MentorAdmin'
 import AssessAdmin from './AssessAdmin'
 import UserAdminSpecific from './UserAdminSpecific';
-
+import MentorSpecific from './MentorSpecific'
 
 import {Router, Route, browserHistory, IndexRoute} from 'react-router'
-// global.server = 'http://localhost:3000';
+// global.server = 'http://localhost:3001';
 global.server ='http://130.211.203.92:1234';
 
 ReactDOM.render(
@@ -44,7 +44,10 @@ function user() {
                         <Route path=":qid/:cid" component={Question}/>
                     </Route>
                     <Route path="category" component={CategoryAdmin}/>
-                    <Route path="mentor" component={MentorAdmin}/>
+                    <Route path="mentor">
+                        <IndexRoute component={MentorAdmin}/>
+                        <Route path=":gid/:gname" component={MentorSpecific}/>
+                    </Route>
                     <Route path="assess" component={AssessAdmin}/>
                 </Route>
             </Router>
