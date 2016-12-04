@@ -46,7 +46,7 @@ function user() {
                     <Route path="category" component={CategoryAdmin}/>
                     <Route path="mentor">
                         <IndexRoute component={MentorAdmin}/>
-                        <Route path=":gid/:gname" component={MentorSpecific}/>
+                        <Route path=":gid/:gname/:cid" component={MentorSpecific}/>
                     </Route>
                     <Route path="assess" component={AssessAdmin}/>
                 </Route>

@@ -25,7 +25,7 @@ class Category extends Component {
         })
     }
     superMentor(id){
-        fetch(global.server + '/group/super',{
+        fetch(global.server + '/group/super/'+id+'/'+this.props.params.cid,{
             method: "POST",
             headers:{
                 "Content-Type":"application/json"

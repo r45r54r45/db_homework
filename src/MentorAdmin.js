@@ -40,7 +40,7 @@ class Category extends Component {
                 <h1>멘토그룹 목록</h1>
                 <ul>
                     {this.state.groupList.map((item, index)=>{
-                        return <li key={index}><Link to={"/mentor/"+item.id+"/"+item.name}>{item.name}</Link></li>
+                        return <li key={index}><Link to={"/mentor/"+item.id+"/"+item.name+"/"+item.Category_id}>{item.name}</Link></li>
                     })}
                 </ul>
                 <h1>멘토그룹 생성</h1>
